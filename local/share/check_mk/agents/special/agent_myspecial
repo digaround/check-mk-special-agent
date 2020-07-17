@@ -1,0 +1,21 @@
+#!/usr/bin/python3
+
+import argparse
+import requests
+
+
+if __name__ == '__main__':
+    arg_parser = argparse.ArgumentParser()
+    required_param_group = arg_parser.add_argument_group('required arguments')
+    required_param_group.add_argument('-a', '--adress_ip', required=True, help="Host adress")
+    required_param_group.add_argument('-p', '--port', required=True, help="Port number")
+    args = arg_parser.parse_args()
+
+    r = requests.get('http://{}:{}'.format(args.adress_ip, args.port))
+
+    print('<<<myspecial_response_code>>>')
+    print(r.status_code)
+
+
+
+

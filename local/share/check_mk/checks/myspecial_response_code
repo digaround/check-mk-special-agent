@@ -1,0 +1,31 @@
+#!/usr/bin/python
+
+def inventory_myspecial_response_code(info):
+    inventory = []
+
+    for line in info:
+        inventory.append(('Myspecial Response', {}))
+
+    return inventory
+
+
+
+def check_myspecial_response_code(item, params, info):
+    exit_code = 0
+    http_code = int(info[0][0])
+    msg = 'Returned code: {}'.format(http_code)
+
+    if http_code != 200:
+       exit_code = 1
+
+
+    return exit_code, msg
+
+
+check_info["myspecial_response_code"] = {
+    'check_function': check_myspecial_response_code,
+    'inventory_function': inventory_myspecial_response_code,
+    'service_description': '%s',
+    'has_perfdata': False,
+    'group': 'myspecial_group',
+}
